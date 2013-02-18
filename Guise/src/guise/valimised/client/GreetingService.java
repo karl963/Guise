@@ -1,5 +1,13 @@
 package guise.valimised.client;
 //Testcomm
+//More comments
+/* long comment to see if it ends up
+ * on github
+ * if it doesn't
+ * then tough luck
+ * if it does, however,
+ * good stuff
+ */
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
