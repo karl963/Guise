@@ -1,0 +1,132 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	
+    <link type="text/css" rel="stylesheet" href="stiil.css">
+
+    <title>Guise Election</title>
+    
+    <!--                                           -->
+    <!-- This script loads your compiled module.   -->
+    <!-- If you add any GWT meta tags, they must   -->
+    <!-- be added before this line.                -->
+    <!--                                           -->
+    <script type="text/javascript" language="javascript" src="guise/guise.nocache.js"></script>
+  </head>
+
+  <body>
+
+    <!-- OPTIONAL: include this if you want history support -->
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+    
+    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+	
+	<!-- -------------- -->
+	<!-- Veebilehe sisu -->
+	<!-- ------------- --->
+	
+	<div id="Kogu" style="width:700px;margin:0 auto;">
+	
+		<div id="Päis" style="width:700px;height:100px;">
+			<a href="http://guisevalimismasin.appspot.com/"><img src="pildid/logo.png" alt="Logo" style="width=700px;height:100px;"></a>
+		</div>
+		
+		<div id="Logimisriba" style="height:30px;width:700px;float:left;">
+			
+			<form>
+				<div id="Tühi" style="width:155px;height:30px;float:left;"> </div>
+				<div id="Kasutaja" style="width:150px;height:30px;float:left;"><input value="Kasutajanimi" type="text" name="username" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
+				<div id="Parool" style="width:150px;height:30px;float:left;"><input value="Parool" type="password" name="password" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
+				<div id="Nupp" style="width:150px;height:30px;float:left;"><input type="button" value="Logi sisse" onClick="Login(this.form);" style="background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';"></div>
+				<div id="Facebook" style="width:95px;height:30px;float:left;"><img src="pildid/facebook.png" alt="fb"></div>
+			</form>
+			
+		</div>
+		
+		<div id="VasakMenu" style="height:600px;width:150px;float:left;">
+			<form action="http://guisevalimismasin.appspot.com/haaleta.html">
+				<input type="image" id="Hääleta" style="height:40px;width:150px;" src="pildid/Haaleta.png" />
+			</form>
+			<form action="http://guisevalimismasin.appspot.com/otsikandidaati.html">
+				<input type="image" id="OtsiKandidaati" style="height:40px;width:150px;" src="pildid/OtsiKandidaati.png" />
+			</form>
+			<form action="http://guisevalimismasin.appspot.com/tulemused.html">
+				<input type="image" id="Tulemused" style="height:40px;width:150px;" src="pildid/Tulemused.png" />
+			</form>
+			<form action="http://guisevalimismasin.appspot.com/minukonto.html">
+				<input type="image" id="MinuKonto" style="height:40px;width:150px;" src="pildid/MinuKonto.png" />
+			</form>
+		</div>
+		
+		<div id="SisuMinuKonto" style="border:1px solid #7CCCF1;height:590px;width:540px;float:right;">
+				
+			<h1>Kandidaatide otsing</h1>
+			
+			<p>
+			All saate otsida kandidaate piirkonna, partei või nime järgi.
+			</p>
+			
+						<form>
+			<table id="Labels" style="width:530px;border:2px solid #7CCCF1;">
+				<tr style="text-align:left;">
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Nimi</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Partei</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Piirkond</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">ID</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;"> </th>
+				</tr>
+				<tr>
+					<td style="width:100px;height:30px;"><input value="Nimi" type="text" name="Eesnimi" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="partei" type="text" name="Perekonnanimi" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="Piirkond" type="text" name="Sünniaeg" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="ID" type="text" name="Partei" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input type="button" value="Otsi" class="Otsi" style="width:100px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" /></td>
+				</tr>
+			</table>
+			</form>
+			
+			<br>
+			
+			<form>
+			<table id="Kandidaadid" style="width:530px;border:2px solid #7CCCF1;">
+				<tr style="text-align:left;">
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Nimi</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Partei</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Piirkond</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">ID</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;"> </th>
+				</tr>
+				<tr>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">Pets</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">Nada raha</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">Outer space</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">kümme</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;"><input type="button" value="Hääleta" class="Hääleta" style="width:100px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" /></td>
+				</tr>
+				<tr>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">Juhan</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">Reform</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">Ala</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;">0</td>
+					<td style="width:100px;height:30px;border-bottom:1px solid #7CCCF1;"><input type="button" value="Hääleta" class="Hääleta" style="width:100px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" /></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+		
+		<div id="Footer" style="text-align:center;backgroundcolod:gray;clear:both">
+			Copyright © Guise
+		</div>
+	
+	</div>
+		
+  </body>
+</html>

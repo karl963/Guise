@@ -45,7 +45,7 @@
 				<div id="Tühi" style="width:155px;height:30px;float:left;"> </div>
 				<div id="Kasutaja" style="width:150px;height:30px;float:left;"><input value="Kasutajanimi" type="text" name="username" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
 				<div id="Parool" style="width:150px;height:30px;float:left;"><input value="Parool" type="password" name="password" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
-				<div id="Nupp" style="width:150px;height:30px;float:left;"><input type="button" value="Logi sisse" onClick="Login(this.form);" style="background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocusr="this.style.color = '#404040';" onBlur="this.style.color = '#000000';"></div>
+				<div id="Nupp" style="width:150px;height:30px;float:left;"><input type="button" value="Logi sisse" onClick="Login(this.form);" style="background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';"></div>
 				<div id="Facebook" style="width:95px;height:30px;float:left;"><img src="pildid/facebook.png" alt="fb"></div>
 			</form>
 			
@@ -66,19 +66,40 @@
 			</form>
 		</div>
 		
-		<div id="Sisu" style="border:1px solid #7CCCF1;height:590px;width:540px;float:right;">
+		<div id="SisuMinuKonto" style="border:1px solid #7CCCF1;height:590px;width:540px;float:right;">
+				
+			<h1>Minu Konto</h1>
 			
-			<h1>Tere tulemast Guise Valimismasinasse!</h1>
 			<p>
-			Kandidaadile hääle andmiseks valige "Hääleta"
-			<br><br>
-			Kindla kandidaadi leidmiseks valige "Otsi kandidaati"
-			<br><br>
-			Tulemuste statistika vaatamiseks valige "Tulemused"
-			<br><br>
-			Kandideerimiseks ja enda hääle muutmiseks valige "Minu konto"
+			All saate oma andmeid muuta ja kandideerida.
 			</p>
-			
+			<form>
+			<table id="Labels" style="width:530px;border:2px solid #7CCCF1;">
+				<tr style="text-align:left;">
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Eesnimi</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Perekonnanimi</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Sünniaeg</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Partei</th>
+					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Piirkond</th>
+				</tr>
+				<tr>
+					<td style="width:100px;height:30px;"><input value="Eesnimi" type="text" name="Eesnimi" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="Perekonnanimi" type="text" name="Perekonnanimi" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="Sünniaeg" type="text" name="Sünniaeg" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="Partei" type="text" name="Partei" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td style="width:100px;height:30px;"><input value="Piirkond" type="text" name="Piirkond" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+				</tr>
+			</table>
+			<table id="Nupp">
+				<tr>
+					<td style="width:100px;height:30px;"> </td>
+					<td style="width:100px;height:30px;"> </td>
+					<td style="width:100px;height:30px;"> </td>
+					<td style="width:100px;height:30px;"> </td>
+					<td style="width:100px;height:30px;"><input type="button" value="Kandideeri" id="Kandideeri" style="width:100px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" /></td>
+				</tr>
+			</table>
+			</form>
 		</div>
 		
 		<div id="Footer" style="text-align:center;backgroundcolod:gray;clear:both">

@@ -45,7 +45,7 @@
 				<div id="Tühi" style="width:155px;height:30px;float:left;"> </div>
 				<div id="Kasutaja" style="width:150px;height:30px;float:left;"><input value="Kasutajanimi" type="text" name="username" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
 				<div id="Parool" style="width:150px;height:30px;float:left;"><input value="Parool" type="password" name="password" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
-				<div id="Nupp" style="width:150px;height:30px;float:left;"><input type="button" value="Logi sisse" onClick="Login(this.form);" style="background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocusr="this.style.color = '#404040';" onBlur="this.style.color = '#000000';"></div>
+				<div id="Nupp" style="width:150px;height:30px;float:left;"><input type="button" value="Logi sisse" onClick="Login(this.form);" style="background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';"></div>
 				<div id="Facebook" style="width:95px;height:30px;float:left;"><img src="pildid/facebook.png" alt="fb"></div>
 			</form>
 			
@@ -66,18 +66,81 @@
 			</form>
 		</div>
 		
-		<div id="Sisu" style="border:1px solid #7CCCF1;height:590px;width:540px;float:right;">
+		<div id="SisuHääleta" style="border:1px solid #7CCCF1;height:590px;width:540px;float:right;">
+		
+			<h1>Hääleta</h1>
+			<p>All saate kandidaadile hääle anda ja andtud häält tühistada.</p>
 			
-			<h1>Tere tulemast Guise Valimismasinasse!</h1>
-			<p>
-			Kandidaadile hääle andmiseks valige "Hääleta"
-			<br><br>
-			Kindla kandidaadi leidmiseks valige "Otsi kandidaati"
-			<br><br>
-			Tulemuste statistika vaatamiseks valige "Tulemused"
-			<br><br>
-			Kandideerimiseks ja enda hääle muutmiseks valige "Minu konto"
-			</p>
+			<div id="HääletusVorm">
+			
+				<h2>Teie valik</h2>
+				
+				<table id="Labels" style="width:460px;">
+					<tr>
+						<td style="width:150px;height:30px;">Piirkond</td>
+						<td style="width:150px;height:30px;">Partei</td>
+						<td style="width:150px;height:30px;">Nimi / ID</td>
+					</tr>
+				</table>
+				
+				<form id="HääletaValitud">
+				
+					<select name="PiirkonnaValik" style="width:150px;" disabled>
+						<option value="Tartumaa">Tartumaa</option>
+					</select>
+					
+					<select name="ParteiValik" style="width:150px;" disabled>
+						<option value="Yes">Yes</option>
+					</select>
+					
+					<select name="NimeValik" style="width:150px;" disabled>
+						<option value="Kukk">Kukk</option>
+					</select>
+					
+					<input type="button" value="Tühista" id="Tühista" style="width:60px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" />
+					
+				</form>
+			
+				<br>
+				
+				<h2>Anna oma hääl</h2>
+				
+				<table id="Labels" style="width:460px;">
+					<tr>
+						<td style="width:150px;height:30px;">Piirkond</td>
+						<td style="width:150px;height:30px;">Partei</td>
+						<td style="width:150px;height:30px;">Nimi / ID</td>
+					</tr>
+				</table>
+				
+				<form id="HääletaUus">
+				
+					<select name="PiirkonnaValik" style="width:150px;">
+						<option value="Tartumaa">Tartumaa</option>
+						<option value="Valgamaa">Valgamaa</option>
+						<option value="Tallinnamaa">Tallinnamaa</option>
+						<option value="FuckBitches">FuckBitches</option>
+					</select>
+					
+					<select name="ParteiValik" style="width:150px;">
+						<option value="Keskerakond">Keskerakond</option>
+						<option value="Natsid">Natsid</option>
+						<option value="Vaba mees">Vaba mees</option>
+						<option value="Naine">Naine</option>
+					</select>
+					
+					<select name="NimeValik" style="width:150px;">
+						<option value="Peeter">Peeter</option>
+						<option value="Meeter">Meeter</option>
+						<option value="Termomeeter">Termomeeter</option>
+						<option value="Homo">Homo</option>
+					</select>
+					
+					<input type="button" value="Hääleta" id="Hääleta" style="width:60px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" />
+					
+				</form>
+				
+			</div>
 			
 		</div>
 		
