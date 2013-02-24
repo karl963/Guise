@@ -1,2 +1,3 @@
 # Module guise
 # RPC service class, partial path of RPC policy file
+guise.valimised.client.GreetingService, F0483E96A6A2C2D1E4877DD9E4EDB271.gwt.rpc
