@@ -14,6 +14,13 @@
     <!-- be added before this line.                -->
     <!--                                           -->
     <script type="text/javascript" language="javascript" src="guise/guise.nocache.js"></script>
+
+<script>
+function open_win() 
+{
+window.open("http://guisevalimismasin.appspot.com/prindi.html");
+}
+</script>
   </head>
 
   <body>
@@ -35,7 +42,7 @@
 	
 	<div id="Kogu">
 	
-		<div id="PÃ¤is">
+		<div id="Päis">
 			<a href="http://guisevalimismasin.appspot.com/"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
 		</div>
 		
@@ -53,7 +60,7 @@
 		
 		<div id="VasakMenu">
 			<form action="http://guisevalimismasin.appspot.com/haaleta.html">
-				<input type="image" id="HÃ¤Ã¤leta" class="leftMenuButton" src="pildid/Haaleta.png" />
+				<input type="image" id="Hääleta" class="leftMenuButton" src="pildid/Haaleta.png" />
 			</form>
 			<form action="http://guisevalimismasin.appspot.com/otsikandidaati.html">
 				<input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" />
@@ -69,7 +76,7 @@
 		<div class="sisuMinuKonto">
 	
 			<h1>Teie valik</h1>
-			<p>All saate valida mille jÃ¤rgi tulemusi sorteerida ning neid seejÃ¤rel vaadata.</p>
+			<p>All saate valida mille järgi tulemusi sorteerida ning neid seejärel vaadata.</p>
 			
 			<form id="ValiOption">
 				
@@ -81,7 +88,10 @@
 
 					<input type="button" value="Kandidaadid" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" />
 
-					<input type="button" value="Kogu riik" id="Kogu riik" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" />
+					<input type="button" value="Kogu riik" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" />
+
+					<input type="button" value="Prindi" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" 
+onclick="open_win()"/>
 
 				
 				</div>
@@ -95,7 +105,7 @@
 		</div>
 		
 		<div id="Footer" class="footer">
-			Copyright Â© Guise
+			Copyright © Guise
 		</div>
 	
 	</div>
