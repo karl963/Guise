@@ -33,40 +33,40 @@
 	<!-- Veebilehe sisu -->
 	<!-- ------------- --->
 	
-	<div id="Kogu" style="width:700px;margin:0 auto;">
+<div id="Kogu">
 	
-		<div id="Päis" style="width:700px;height:100px;">
-			<a href="http://guisevalimismasin.appspot.com/"><img src="pildid/logo.png" alt="Logo" style="width=700px;height:100px;"></a>
+		<div id="PÃ¤is">
+			<a href="http://guisevalimismasin.appspot.com/"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
 		</div>
 		
-		<div id="Logimisriba" style="height:30px;width:700px;float:left;">
+		<div id="Logimisriba">
 			
 			<form>
-				<div id="Tühi" style="width:155px;height:30px;float:left;"> </div>
-				<div id="Kasutaja" style="width:150px;height:30px;float:left;"><input value="Kasutajanimi" type="text" name="username" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
-				<div id="Parool" style="width:150px;height:30px;float:left;"><input value="Parool" type="password" name="password" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:140px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></div>
-				<div id="Nupp" style="width:150px;height:30px;float:left;"><input type="button" value="Logi sisse" onClick="Login(this.form);" style="background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';"></div>
-				<div id="Facebook" style="width:95px;height:30px;float:left;"><img src="pildid/facebook.png" alt="fb"></div>
+				<div id="Tuhi"> </div>
+				<div id="Kasutaja"><input value="Kasutajanimi" type="text" name="username" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
+				<div id="Parool"><input value="Parool" type="password" name="password" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
+				<div id="Nupp"><input type="button" value="Logi sisse" onClick="Login(this.form);" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
+				<div id="Facebook"><img src="pildid/facebook.png" alt="fb"></div>
 			</form>
 			
 		</div>
 		
-		<div id="VasakMenu" style="height:600px;width:150px;float:left;">
+		<div id="VasakMenu">
 			<form action="http://guisevalimismasin.appspot.com/haaleta.html">
-				<input type="image" id="Hääleta" style="height:40px;width:150px;" src="pildid/Haaleta.png" />
+				<input type="image" id="HÃ¤Ã¤leta" class="leftMenuButton" src="pildid/Haaleta.png" />
 			</form>
 			<form action="http://guisevalimismasin.appspot.com/otsikandidaati.html">
-				<input type="image" id="OtsiKandidaati" style="height:40px;width:150px;" src="pildid/OtsiKandidaati.png" />
+				<input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" />
 			</form>
 			<form action="http://guisevalimismasin.appspot.com/tulemused.html">
-				<input type="image" id="Tulemused" style="height:40px;width:150px;" src="pildid/Tulemused.png" />
+				<input type="image" id="Tulemused" class="leftMenuButton" src="pildid/Tulemused.png" />
 			</form>
 			<form action="http://guisevalimismasin.appspot.com/minukonto.html">
-				<input type="image" id="MinuKonto" style="height:40px;width:150px;" src="pildid/MinuKonto.png" />
+				<input type="image" id="MinuKonto" class="leftMenuButton" src="pildid/MinuKonto.png" />
 			</form>
 		</div>
 		
-		<div id="SisuMinuKonto" style="border:1px solid #7CCCF1;height:590px;width:540px;float:right;">
+		<div class="sisuMinuKonto">
 				
 			<h1>Minu Konto</h1>
 			
@@ -74,36 +74,42 @@
 			All saate oma andmeid muuta ja kandideerida.
 			</p>
 			<form>
-			<table id="Labels" style="width:530px;border:2px solid #7CCCF1;">
-				<tr style="text-align:left;">
-					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Eesnimi</th>
-					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Perekonnanimi</th>
-					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Sünniaeg</th>
-					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Partei</th>
-					<th style="width:100px;height:30px;border-bottom:2px solid #7CCCF1;">Piirkond</th>
+			<table class="minukontoLabel">
+				<tr class="minukontoTr">
+					<th class="minukontoTh">Eesnimi</th>
+					<th class="minukontoTh">Perekonnanimi</th>
+					<th class="minukontoTh">SÃ¼nniaeg</th>
+					<th class="minukontoTh">Partei</th>
+					<th class="minukontoTh">Piirkond</th>
 				</tr>
 				<tr>
-					<td style="width:100px;height:30px;"><input value="Eesnimi" type="text" name="Eesnimi" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
-					<td style="width:100px;height:30px;"><input value="Perekonnanimi" type="text" name="Perekonnanimi" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
-					<td style="width:100px;height:30px;"><input value="Sünniaeg" type="text" name="Sünniaeg" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
-					<td style="width:100px;height:30px;"><input value="Partei" type="text" name="Partei" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
-					<td style="width:100px;height:30px;"><input value="Piirkond" type="text" name="Piirkond" style="color:#FFFFFF;background:#7CCCF1;border-color:#7CCCF1;width:95px;" onFocus="this.style.background = '#FFFFFF';this.style.color= '#000000'" onBlur="this.style.background = '#7CCCF1';this.style.color= '#FFFFFF'"></td>
+					<td class="minukontoTd"><input value="Eesnimi" type="text" name="Eesnimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoTd"><input value="Perekonnanimi" type="text" name="Perekonnanimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoTd"><input value="SÃ¼nniaeg" type="text" name="SÃ¼nniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoTd"><input value="Partei" type="text" name="Partei" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoTd"><input value="Piirkond" type="text" name="Piirkond" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
 				</tr>
 			</table>
-			<table id="Nupp">
+			<table>
 				<tr>
-					<td style="width:100px;height:30px;"> </td>
-					<td style="width:100px;height:30px;"> </td>
-					<td style="width:100px;height:30px;"> </td>
-					<td style="width:100px;height:30px;"> </td>
-					<td style="width:100px;height:30px;"><input type="button" value="Kandideeri" id="Kandideeri" style="width:100px;background:#7CCCF1;border-color:#7CCCF1;" onMouseOver="this.style.color = '#FFFFFF';" onMouseOut="this.style.color = '#000000';" onFocus="this.style.color = '#404040';" onBlur="this.style.color = '#000000';" /></td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> <input type="button" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" /></td>
 				</tr>
 			</table>
 			</form>
 		</div>
+
 		
-		<div id="Footer" style="text-align:center;backgroundcolod:gray;clear:both">
-			Copyright © Guise
+		<div id="Footer" class="footer">
+			Copyright Â© Guise
 		</div>
 	
 	</div>
