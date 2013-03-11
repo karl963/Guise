@@ -80,14 +80,21 @@ select.ListBoxSuurused{
 	border-color:#7CCCF1;
 }
 
-div.sisuMinuKonto{
+div.sisu{
 	border:1px solid #7CCCF1;
-	height:590px;
+	height:auto;
 	width:540px;
 	float:right;
 }
-.sisuMinuKonto.prindi{
+.sisu.prindi{
 	float:left;
+}
+
+.sisu{
+	display:none;
+}
+.sisu#sisuPealeht {
+	display:block;
 }
 
 table.minukontoLabel{
@@ -98,6 +105,18 @@ table.minukontoLabel{
 tr.minukontoTr{
 	text-align:left;
 }
+
+.tulemusedLahter{
+	width: 536px;
+	border: 1px solid #7CCCF1;
+}
+
+table.myTable 
+{ border-collapse:collapse;
+width: 530px; }
+
+table.myTable td, table.myTable th 
+{ border:1px solid #7CCCF1;padding:3px; }
 
 th.minukontoTh{
 	width:100px;
@@ -116,6 +135,11 @@ td.minukontoTd.alus{
 td.minukontoNupp{
 	width:100px;
 	height:30px;
+}
+
+.minukontoBox{
+	width:100px;
+	background-color: #7CCCF1;
 }
 
 .suurNupp{
@@ -151,6 +175,14 @@ td.minukontoNupp{
 	border-color:#7CCCF1;
 	width:95px;
 }
+
+.minuKontoRed{
+	background: RED;
+}
+.minuKontoNorm{
+	background: #7CCCF1;
+ }
+
 
 .otsinguLahterOnFocus{
 	color:#000000;
@@ -210,9 +242,25 @@ td.minukontoNupp{
 
 .valimisListBox{
 	width:150px;
+	
+}
+
+.loading{
+	text-align: center;
+	display: none;
+	margin: 0 auto;
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
+
+
+#Hojatus{
+	color:red;
+}
+#Edukas{
+	color: green;
+}
+
 #closeButton {
   margin: 15px 6px 6px;
 }
@@ -287,4 +335,8 @@ td.minukontoNupp{
 #kogu{
 	width:700px;
 	margin:0 auto;
+}
+
+#TulemusedSorteering{
+	display:none;
 }

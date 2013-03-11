@@ -8,16 +8,18 @@
 
     <title>Guise Election</title>
     
-    <!--                                           -->
-    <!-- This script loads your compiled module.   -->
-    <!-- If you add any GWT meta tags, they must   -->
-    <!-- be added before this line.                -->
-    <!--                                           -->
-    <script type="text/javascript" language="javascript" src="guise/guise.nocache.js"></script>
+	<script src="jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="sort.js"></script>
+	<script type="text/javascript" src="scriptid.js"></script>
+	<script>
+	var TSort_Data = new Array ('Osavott', 's', 'i', 'i', 'i');
+	var TSort_Initial =  new Array ('0A');
+	tsRegister();
+	</script>
+
   </head>
 
   <body>
-
     <!-- OPTIONAL: include this if you want history support -->
     <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
     
@@ -36,7 +38,7 @@
 	<div id="Kogu">
 	
 		<div id="PÃ¤is">
-			<a href="http://guisevalimismasin.appspot.com/"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
+			<a id="Pealeht"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
 		</div>
 		
 		<div id="Logimisriba">
@@ -52,23 +54,16 @@
 		</div>
 		
 		<div id="VasakMenu">
-			<form action="http://guisevalimismasin.appspot.com/haaleta.html">
-				<input type="image" id="HÃ¤Ã¤leta" class="leftMenuButton" src="pildid/Haaleta.png" />
-			</form>
-			<form action="http://guisevalimismasin.appspot.com/otsikandidaati.html">
-				<input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" />
-			</form>
-			<form action="http://guisevalimismasin.appspot.com/tulemused.html">
-				<input type="image" id="Tulemused" class="leftMenuButton" src="pildid/Tulemused.png" />
-			</form>
-			<form action="http://guisevalimismasin.appspot.com/minukonto.html">
-				<input type="image" id="MinuKonto" class="leftMenuButton" src="pildid/MinuKonto.png" />
-			</form>
+
+			<input type="image" id="Hääleta" class="leftMenuButton" src="pildid/Haaleta.png" />
+			<input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" />
+			<input type="image" id="Tulemused" class="leftMenuButton" src="pildid/Tulemused.png" />
+			<input type="image" id="MinuKonto" class="leftMenuButton" src="pildid/MinuKonto.png" />
+
 		</div>
 		
-		<div class="sisuMinuKonto">
+		<div id="sisuPealeht" class="sisu">
 
-			
 			<h1>Tere tulemast Guise Valimismasinasse!</h1>
 			<p>
 			Kandidaadile h&#228;&#228;le andmiseks valige "H&#228;&#228;leta"
@@ -82,10 +77,357 @@
 			
 		</div>
 		
+		<div id="sisuHääleta" class="sisu">
+		
+			<h1>H&#228;&#228;leta</h1>
+			<p>All saate kandidaadile h&#228;&#228;le anda ja andtud h&#228;&#228;lt t&#252;histada.</p>
+			
+			<div id="H&#228;&#228;letusVorm">
+			
+				<h2>Teie valik</h2>
+				
+				<table id="Labels">
+					<tr>
+						<td class="labels">Piirkond</td>
+						<td class="labels">Partei</td>
+						<td class="labels">Nimi / ID</td>
+					</tr>
+				</table>
+				
+				<form id="H&#228;&#228;letaValitud">
+				
+					<select class="ListBoxSuurused" disabled>
+						<option value="Tartumaa">Tartumaa</option>
+					</select>
+					
+					<select class="ListBoxSuurused" disabled>
+						<option value="Yes">Yes</option>
+					</select>
+					
+					<select class="ListBoxSuurused" disabled>
+						<option value="Kukk">Kukk</option>
+					</select>
+					
+					<input type="button" value="T&#252;hista" class="Haaleta" onMouseOver="this.className= 'HaaletaOver'" onMouseOut="this.className = 'HaaletaOut'" onFocus="this.className = 'HaaletaFocus'" onBlur="this.className = 'HaaletaOut'" />
+					
+				</form>
+			
+				<br>
+				
+				<h2>Anna oma h&#228;&#228;l</h2>
+				
+				<table class="Labels">
+					<tr>
+						<td class="labels">Piirkond</td>
+						<td class="labels">Partei</td>
+						<td class="labels"> Nimi / ID</td>
+					</tr>
+				</table>
+				
+				<form id="HÃ¤Ã¤letaUus">
+				
+					<select name="PiirkonnaValik" class="valimisListBox">
+						<option value="Tartumaa">Tartumaa</option>
+						<option value="Valgamaa">Valgamaa</option>
+						<option value="Harjumaa">Harjumaa</option>
+						<option value="P&#228;rnumaa">P&#228;rnumaa</option>
+					</select>
+					
+					<select name="ParteiValik" class="valimisListBox">
+						<option value="Keskerakond">Keskerakond</option>
+						<option value="Reformierakond">Reformierakond</option>
+						<option value="Vaba mees">Vaba mees</option>
+						<option value="Naine">Naine</option>
+					</select>
+					
+					<select name="NimeValik" class="valimisListBox">
+						<option value="Peeter">Peeter</option>
+						<option value="Meeter">Meeter</option>
+						<option value="Termomeeter">Termomeeter</option>
+						<option value="Juhan">Juhan</option>
+					</select>
+					
+					<input type="button" value="H&#228;&#228;leta" class="Haaleta" onMouseOver="this.className = 'HaaletaOver'" onMouseOut="this.className = 'HaaletaOut'" onFocus="this.className = 'HaaletaFocus'" onBlur="this.className = 'HaaletaOut'" />
+					
+				</form>
+				
+			</div>
+			
+		</div>
+		
+		<div id="sisuMinuKonto" class="sisu">
+				
+			<h1>Minu Konto</h1>
+			
+			<p>
+			All saate oma andmeid muuta ja kandideerida.
+			</p>
+			<form Name="Valideerimine">
+			<table class="minukontoLabel">
+				<tr class="minukontoTr">
+					<th class="minukontoTh">Eesnimi</th>
+					<th class="minukontoTh">Perekonnanimi</th>
+					<th class="minukontoTh">S&#252;nniaeg</th>
+					<th class="minukontoTh">Partei</th>
+					<th class="minukontoTh">Piirkond</th>
+				</tr>
+				<tr>
+					<td class="minukontoTd"><input value="" type="text" name="Eesnimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoTd"><input value="" type="text" name="Perekonnanimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoTd"><input value="" type="text" name="Sunniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+				
+				
+					<td >
+					<select name="ErakonnaValik" class="minukontoBox">
+						<option value="ValigeUks">Valige &#252;ks</option>
+						<option value="Kesk">Kesk</option>
+						<option value="Reform">Reform</option>
+						<option value="Vabamaa">Vabamaa</option>
+						<option value="Kodukandi">Kodukandi</option>
+					</select>
+					</td>
+					<!-- <td class="minukontoTd"><input value="Partei" type="text" name="Partei" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td> -->
+
+					<td>
+					<select name="PiirkonnaValik" class="minukontoBox" >
+						<option value="ValigeUks">Valige &#252;ks</option>
+						<option value="Valgamaa">Valgamaa</option>
+						<option value="Harjumaa">Harjumaa</option>
+						<option value="P&#228;rnumaa">P&#228;rnumaa</option>
+					</select>
+					</td>
+					<!-- <td class="minukontoTd"><input value="Piirkond" type="text" name="Piirkond" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td> -->
+
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> </td>
+					<td class="minukontoNupp"> <input type="button" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" onClick="Kandideeri(this.form)" /></td>
+				</tr>
+			</table>
+			<p id="Hojatus"> </p>
+			<p id="Edukas"> </p>
+			</form>
+		</div>
+		
+		<div id="sisuOtsiKandidaati" class="sisu">
+				
+			<h1>Kandidaatide otsing</h1>
+			
+			<p>
+			All saate otsida kandidaate piirkonna, partei v&#245;i nime j&#228;rgi.
+			</p>
+			
+
+			<table class="minukontoLabel">
+				<tr class="minukontoTr">
+					<th class="minukontoTh">Nimi</th>
+					<th class="minukontoTh">Partei</th>
+					<th class="minukontoTh">Piirkond</th>
+					<th class="minukontoTh">ID</th>
+					<th class="minukontoTh"> </th>
+				</tr>
+				<tr>
+					<td class="minukontoNupp"><input id="NIMI" type="text" name="Eesnimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoNupp"><input id="PARTEI" type="text" name="Perekonnanimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoNupp"><input id="PIIRKOND" type="text" name="SÃ¼nniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoNupp"><input id="ID" type="text" name="Partei" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+
+					<td class="minukontoNupp"><button type="button" onclick="OtsiKandidaati()" value="Otsi" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">Otsi</button></td>
+				</tr>
+			</table>
+
+			
+			<br>
+			
+
+			<table class="minukontoLabel" id="OtsinguTabel">
+				<tr class="minukontoTr">
+					<th class="minukontoTh">Nimi</th>
+					<th class="minukontoTh">Partei</th>
+					<th class="minukontoTh">Piirkond</th>
+					<th class="minukontoTh">ID</th>
+					<th class="minukontoTh">&emsp;</th>
+				</tr>
+				<tr>
+					<td class="minukontoTd alus">Pets</td>
+					<td class="minukontoTd alus">Nada raha</td>
+					<td class="minukontoTd alus">Outer space</td>
+					<td class="minukontoTd alus">102</td>
+					<td class="minukontoTd alus"><button type="button" value="H&#228;&#228;leta" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">H&#228;&#228;leta</button></td>
+
+				</tr>
+				<tr>
+					<td class="minukontoTd alus">Juhan</td>
+					<td class="minukontoTd alus">Reform</td>
+					<td class="minukontoTd alus">Ala</td>
+					<td class="minukontoTd alus">0</td>
+					<td class="minukontoTd alus"><button type="button" value="H&#228;&#228;leta" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">H&#228;&#228;leta</button></td>
+
+				</tr>
+			</table>
+			<div class="loading" id="loadingOtsing" ><img src='pildid/loader.gif'></div>
+		</div>
+
+	<div id="sisuTulemused" class="sisu">
+	
+			<h1>Teie valik</h1>
+			<p>All saate valida mille järgi tulemusi sorteerida ning neid seejärel vaadata.</p>
+				
+				<div class="sorteeri">
+				
+					<input type="button" value="Piirkond" id="Piirkond" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+
+					<input type="button" value="Partei" id="Partei" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+
+					<input type="button" value="Kandidaadid" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+
+					<input type="button" value="Kogu riik" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+
+					<input type="button" value="Prindi" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" 
+onclick="prindi()"/>
+
+				
+				</div>
+		
+			<br>
+			<div id="loading" style="display: none;" align="middle"><img src='pildid/loader.gif'></div>
+			<div id="TulemusedSorteering">
+
+			<table id="Osavott" class="myTable">
+				<thead>
+				<tr>
+				<th >Piirkond</th>
+				<th>H&#228;&#228;letajaid</th>
+				<th>H&#228;&#228;letanuid</th>
+				<th>&#37;</th>
+				</tr>
+				</thead>
+				<tr>
+				<td>Harjumaa</td>
+				<td>45 502</td>
+				<td>32 502</td>
+				<td>71,4</td>
+				</tr>
+				
+				<tr>
+				<td>P&#228;numaa</td>
+				<td>27 613</td>
+				<td> 18 030 </td>
+				<td>65,3</td>
+				
+				</tr>
+				
+				<tr>
+				<td>Hiiumaa</td>
+				<td>7 668 </td>
+				<td>5 511</td>
+				<td>71,9</td>
+				</tr>
+				
+				<tr>
+				<td>J&#245;gevamaa</td>
+				<td>25 945 </td>
+				<td>15 491</td>
+				<td>59,7</td>
+				</tr>
+				
+				<tr>
+				<td>Ida-Virumaa</td>
+				<td> 15 562</td>
+				<td> 11 699 </td>
+				<td> 75,2</td>
+				</tr>
+				
+				<tr>
+				<td>J&#228;rvamaa</td>
+				<td> 27 374 </td>
+				<td>19 139</td>
+				<td> 69,9</td>
+				</tr>
+				
+				<tr>
+				<td>L&#228;&#228;nemaa</td>
+				<td> 17 259</td>
+				<td> 11 662</td>
+				<td> 67,6</td>
+				</tr>
+				
+				<tr>
+				<td>L&#228;&#228;ne-Virumaa</td>
+				<td>40 978</td>
+				<td>26 497</td>
+				<td> 64,7</td>
+				</tr>
+				
+				<tr>
+				<td>P&#245;lvamaa</td>
+				<td>21 218  </td>
+				<td> 12 028</td>
+				<td> 56,7 </td>
+				</tr>
+				
+				<tr>
+				<td>Raplamaa</td>
+				<td> 22 768</td>
+				<td>15 838</td>
+				<td> 69,6</td>
+				</tr>
+				
+				<tr>
+				<td>Saaremaa</td>
+				<td>25 334</td>
+				<td>17 061</td>
+				<td> 67,3</td>
+				</tr>
+				
+				<tr>
+				<td>Tartumaa</td>
+				<td>27 616</td>
+				<td>17 964 </td>
+				<td>65,1 </td>
+				</tr>
+				
+				<tr>
+				<td>Valgamaa</td>
+				<td>22 705</td>
+				<td>15 313 </td>
+				<td>67,4 </td>
+				</tr>
+				
+				<tr>
+				<td>Viljandimaa</td>
+				<td>42 892</td>
+				<td>30 104</td>
+				<td>70,2</td>
+				</tr>
+				
+				<tr>
+				<td>V&#245;rumaa</td>
+				<td>26 295</td>
+				<td>16 875 </td>
+				<td> 64,2 </td>
+				</tr>
+
+			
+			</table>
+			
+			<img src="pildid/maakonnad.jpg" alt="maakonnad" id="kaart">
+			</div>
+		</div>
+		
 		<div id="Footer" class="footer">
 			Copyright Â© Guise
 		</div>
-	
+
 	</div>
 		
   </body>
