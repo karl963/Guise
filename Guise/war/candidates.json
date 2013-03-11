@@ -1,0 +1,10 @@
+{
+"candidates":[
+{ "name":"Juku Juur" , "partei":"Reform" , "piirkond":"Tartumaa" , "id":"1" },
+{ "name":"Savi Päts" , "partei":"Kesk" , "piirkond":"Valgamaa" , "id":"2" },
+{ "name":"Mari Maal" , "partei":"Kesk" , "piirkond":"Harjumaa" , "id":"3" },
+{ "name":"Mari Murikas" , "partei":"Reform" , "piirkond":"Harjumaa" , "id":"4" },
+{ "name":"Kaarel Karm" , "partei":"SDE" , "piirkond":"Harjumaa" , "id":"5" },
+{ "name":"Lahe Nimi" , "partei":"IRL" , "piirkond":"Tartumaa" , "id":"6" }
+]
+}
