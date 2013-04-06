@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee                http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
+   
+   <servlet>
+        <servlet-name>CandidateServlet</servlet-name>
+        <servlet-class>guise.valimised.server.CandidateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CandidateServlet</servlet-name>
+        <url-pattern>/CandidateServlet/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ValidateServlet</servlet-name>
+        <servlet-class>guise.valimised.server.ValidateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ValidateServlet</servlet-name>
+        <url-pattern>/ValidateServlet/*</url-pattern>
+    </servlet-mapping>
+    
+       <servlet>
+        <servlet-name>HääletusServlet</servlet-name>
+        <servlet-class>guise.valimised.server.HääletusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HääletusServlet</servlet-name>
+        <url-pattern>/HääletusServlet/*</url-pattern>
+    </servlet-mapping>
+    
   <!-- Servlets -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
@@ -13,7 +40,7 @@
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>Guise.html</welcome-file>
+    <welcome-file>Guise.jsp</welcome-file>
   </welcome-file-list>
 
   <servlet>

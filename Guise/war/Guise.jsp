@@ -1,3 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.lang.String.*" %>
+<%@ page import="com.google.appengine.api.rdbms.AppEngineDriver" %>
+
 <!doctype html>
 
 <html>
@@ -9,12 +15,12 @@
     <title>Guise Election</title>
     
 	<script src="jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.4.2.js" type="text/javascript"></script>
 	<script type="text/javascript" src="sort.js"></script>
 	<script type="text/javascript" src="scriptid.js"></script>
 	<script>
 	var TSort_Data = new Array ('Osavott', 's', 'i', 'i', 'i');
 	var TSort_Initial =  new Array ('0A');
-	tsRegister();
 	</script>
 
   </head>
@@ -37,32 +43,41 @@
 	
 	<div id="Kogu">
 	
-		<div id="PÃ¤is">
-			<a id="Pealeht"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
+		<div id="PÃÂ¤is">
+			<ul class="VasakMenuList">
+			<li class="tab"><a id="Pealeht"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
+			</ul>
 		</div>
+		
+		<div id="PaisTeade">Antud rakendus ei ole mõeldud kasutamiseks reaalsetel valimistel</div>
+		
+		<div id="TuhiRida"> </div>
 		
 		<div id="Logimisriba">
 			
-			<form>
+			<form id="logimine">
 				<div id="Tuhi"> </div>
-				<div id="Kasutaja"><input value="Kasutajanimi" type="text" name="username" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
-				<div id="Parool"><input value="Parool" type="password" name="password" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
-				<div id="Nupp"><input type="button" value="Logi sisse" onClick="Login(this.form);" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
+				<div id="Kasutaja"><input id="KASUTAJA" value="Kasutajanimi" type="text" name="username" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
+				<div id="Parool"><input id="PAROOL" value="Parool" type="password" name="password" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
+				<div id="Nupp"><input type="submit" value="Logi sisse" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
+				<div id="NuppV"><input type="submit" value="Logi välja" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
+				<div id="valedandmed"><p id='warning'>Valed andmed!</p></div>
 				<div id="Facebook"><img src="pildid/facebook.png" alt="fb"></div>
 			</form>
 			
 		</div>
 		
+		<div class="tabs">
 		<div id="VasakMenu">
-
-			<input type="image" id="Hääleta" class="leftMenuButton" src="pildid/Haaleta.png" />
-			<input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" />
-			<input type="image" id="Tulemused" class="leftMenuButton" src="pildid/Tulemused.png" />
-			<input type="image" id="MinuKonto" class="leftMenuButton" src="pildid/MinuKonto.png" />
-
+			<ul class="VasakMenuList">			
+			<!--<li class="tab"><a href="#sisuHääleta"><input type="image" id="HÃ¤Ã¤leta" class="leftMenuButton" src="pildid/Haaleta.png" /></a></li>-->
+			<li class="tab"><a href="#sisuOtsiKandidaati"><input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" /></a></li>
+			<li class="tab"><a href="#sisuTulemused"><input type="image" id="Tulemused" class="leftMenuButton" src="pildid/Tulemused.png" /></a></li>
+			<li class="tab"><a href="#sisuMinuKonto"><input type="image" id="MinuKonto" class="leftMenuButton" src="pildid/MinuKonto.png" /></a></li>
+			</ul>
 		</div>
 		
-		<div id="sisuPealeht" class="sisu">
+		<div id="sisuPealeht" class="content sisu">
 
 			<h1>Tere tulemast Guise Valimismasinasse!</h1>
 			<p>
@@ -77,7 +92,8 @@
 			
 		</div>
 		
-		<div id="sisuHääleta" class="sisu">
+		<!--
+		<div id="sisuHÃ¤Ã¤leta" class="content sisu">
 		
 			<h1>H&#228;&#228;leta</h1>
 			<p>All saate kandidaadile h&#228;&#228;le anda ja andtud h&#228;&#228;lt t&#252;histada.</p>
@@ -124,7 +140,8 @@
 					</tr>
 				</table>
 				
-				<form id="HÃ¤Ã¤letaUus">
+		
+				<form id="HÃÂ¤ÃÂ¤letaUus">
 				
 					<select name="PiirkonnaValik" class="valimisListBox">
 						<option value="Tartumaa">Tartumaa</option>
@@ -154,15 +171,17 @@
 			</div>
 			
 		</div>
-		
-		<div id="sisuMinuKonto" class="sisu">
-				
+		-->
+		<div id="sisuMinuKonto" class="content sisu">
+			
+			<div id="Logitud">
+			
 			<h1>Minu Konto</h1>
 			
 			<p>
-			All saate oma andmeid muuta ja kandideerida.
+			All saate oma andmeid muuta ja kandideerida. Samuti saate enda tehtud häälevalikut tühistada.
 			</p>
-			<form Name="Valideerimine">
+			<form Name="Valideerimine" >
 			<table class="minukontoLabel">
 				<tr class="minukontoTr">
 					<th class="minukontoTh">Eesnimi</th>
@@ -172,30 +191,31 @@
 					<th class="minukontoTh">Piirkond</th>
 				</tr>
 				<tr>
-					<td class="minukontoTd"><input value="" type="text" name="Eesnimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoTd"><input type="text" name="nimi" id="KEESNIMI" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoTd"><input value="" type="text" name="Perekonnanimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoTd"><input type="text" name="perenimi" id="KPERENIMI" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoTd"><input value="" type="text" name="Sunniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoTd"><input type="text" name="sünniaeg" id="KSÜNNIAEG" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 				
 				
 					<td >
-					<select name="ErakonnaValik" class="minukontoBox">
-						<option value="ValigeUks">Valige &#252;ks</option>
-						<option value="Kesk">Kesk</option>
-						<option value="Reform">Reform</option>
-						<option value="Vabamaa">Vabamaa</option>
-						<option value="Kodukandi">Kodukandi</option>
+					<select id="KPARTEI" class="minukontoBox" name="partei">
+						<option value="--Valige--">--Valige--</option>
+						<option value="Meeskond">Meeskond</option>
+						<option value="Partei">Partei</option>
+						<option value="Selts">Selts</option>
+						<option value="Yhing">Yhing</option>
 					</select>
 					</td>
 					<!-- <td class="minukontoTd"><input value="Partei" type="text" name="Partei" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td> -->
 
 					<td>
-					<select name="PiirkonnaValik" class="minukontoBox" >
-						<option value="ValigeUks">Valige &#252;ks</option>
+					<select id="KPIIRKOND" class="minukontoBox" name="piirkond">
+						<option value="--Valige--">--Valige--</option>
 						<option value="Valgamaa">Valgamaa</option>
 						<option value="Harjumaa">Harjumaa</option>
-						<option value="P&#228;rnumaa">P&#228;rnumaa</option>
+						<option value="Saaremaa">Saaremaa</option>
+						<option value="Tartumaa">Tartumaa</option>
 					</select>
 					</td>
 					<!-- <td class="minukontoTd"><input value="Piirkond" type="text" name="Piirkond" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td> -->
@@ -208,15 +228,47 @@
 					<td class="minukontoNupp"> </td>
 					<td class="minukontoNupp"> </td>
 					<td class="minukontoNupp"> </td>
-					<td class="minukontoNupp"> <input type="button" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'" onClick="Kandideeri(this.form)" /></td>
+					<td class="minukontoNupp"> <input type="button" onClick="Kandideeri(this.form)" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'"/></td>
 				</tr>
 			</table>
 			<p id="Hojatus"> </p>
 			<p id="Edukas"> </p>
 			</form>
+			
+			<hr class="joon">
+			
+			<h2>Teie tehtud valik</h2>
+			
+			<table id="Labels">
+					<tr>
+						<td class="labels">Piirkond</td>
+						<td class="labels">Partei</td>
+						<td class="labels">Nimi / ID</td>
+					</tr>
+			</table>
+			
+			<form id="tyhistamine">
+			<input type="text" id="HPIIRKOND" value="-" class="ListBoxSuurused" disabled />
+			
+			<input type="text" id="HPARTEI" value="-" class="ListBoxSuurused" disabled />
+
+			<input type="text" id="HNIMI" value="-" class="ListBoxSuurused" disabled />
+			
+			<input type="submit" value="T&#252;hista" class="Haaleta" onMouseOver="this.className= 'HaaletaOver'" onMouseOut="this.className = 'HaaletaOut'" onFocus="this.className = 'HaaletaFocus'" onBlur="this.className = 'HaaletaOut'" />
+			</form>
+			
+			<br>
+			<br>
+			</div>
+			
+			<div id="Logimata">
+				<p>Enda andmete kuvamiseks peate olema sisse logitud.</p>
+			</div>
+			
+			
 		</div>
 		
-		<div id="sisuOtsiKandidaati" class="sisu">
+		<div id="sisuOtsiKandidaati" class="content sisu">
 				
 			<h1>Kandidaatide otsing</h1>
 			
@@ -224,7 +276,7 @@
 			All saate otsida kandidaate piirkonna, partei v&#245;i nime j&#228;rgi.
 			</p>
 			
-
+			<form id="otsikandidaati">
 			<table class="minukontoLabel">
 				<tr class="minukontoTr">
 					<th class="minukontoTh">Nimi</th>
@@ -234,23 +286,21 @@
 					<th class="minukontoTh"> </th>
 				</tr>
 				<tr>
-				<form id="otsikandidaati" method="post" action="/CandidateServlet">
 					<td class="minukontoNupp"><input id="NIMI" type="text" name="Eesnimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 					<td class="minukontoNupp"><input id="PARTEI" type="text" name="Perekonnanimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoNupp"><input id="PIIRKOND" type="text" name="SÃ¼nniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoNupp"><input id="PIIRKOND" type="text" name="SÃÂ¼nniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
 					<td class="minukontoNupp"><input id="ID" type="text" name="Partei" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoNupp"><button type="button" value="Otsi" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">Otsi</button></td>
-				</form>
+					<td class="minukontoNupp"><button type="submit" value="Otsi" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">Otsi</button></td>
 				</tr>
 			</table>
-
+			</form>
 			
 			<br>
 			
-
+			<form id="AnnaHaal">
 			<table class="minukontoLabel" id="OtsinguTabel">
 				<tr class="minukontoTr">
 					<th class="minukontoTh">Nimi</th>
@@ -259,30 +309,46 @@
 					<th class="minukontoTh">ID</th>
 					<th class="minukontoTh">&emsp;</th>
 				</tr>
-				<tr>
-					<td class="minukontoTd alus">Pets</td>
-					<td class="minukontoTd alus">Nada raha</td>
-					<td class="minukontoTd alus">Outer space</td>
-					<td class="minukontoTd alus">102</td>
-					<td class="minukontoTd alus"><button type="button" value="H&#228;&#228;leta" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">H&#228;&#228;leta</button></td>
-
-				</tr>
-				<tr>
-					<td class="minukontoTd alus">Juhan</td>
-					<td class="minukontoTd alus">Reform</td>
-					<td class="minukontoTd alus">Ala</td>
-					<td class="minukontoTd alus">0</td>
-					<td class="minukontoTd alus"><button type="button" value="H&#228;&#228;leta" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">H&#228;&#228;leta</button></td>
-
-				</tr>
 			</table>
+			</form>
+			
 			<div class="loading" id="loadingOtsing" ><img src='pildid/loader.gif'></div>
 		</div>
 
-	<div id="sisuTulemused" class="sisu">
+	<div id="sisuIsikVaade" class="content sisu"> 
+	
+			<h1>Kandidaadi info</h1><br>
+
+			<table class="isikVaade" id="isikVaade">
+				<tr>
+					<th>Eesnimi</th>
+					<td id="LISAEESNIMI"></td>
+				</tr>
+				<tr>
+					<th>Perenimi</th>
+					<td id="LISAPERENIMI"></td>
+				</tr>
+				<tr>
+					<th>Erakonna nimi</th>
+					<td id="LISAPARTEI"></td>
+				</tr>
+				<tr>
+					<th>Piirkonna nimi</th>
+					<td id="LISAPIIRKOND"></td>
+				</tr>
+				<tr>
+					<th>Valimis nr</th>
+					<td id="LISAID"></td>
+				</tr>
+			</table>
+			<input type="button" value="Tagasi" id="TagasiNupp" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" onclick="goBack()" />
+
+	</div>
+		
+	<div id="sisuTulemused" class="content sisu">
 	
 			<h1>Teie valik</h1>
-			<p>All saate valida mille järgi tulemusi sorteerida ning neid seejärel vaadata.</p>
+			<p>All saate valida mille jÃ¤rgi tulemusi sorteerida ning neid seejÃ¤rel vaadata.</p>
 				
 				<div class="sorteeri">
 				
@@ -426,10 +492,12 @@ onclick="prindi()"/>
 			</div>
 		</div>
 		
+		<div id="JalusTeade">Rakenduses realiseeritud e-valimiste näide on realiseeritud tehnoloogiate praktiseerimise eesmärgil ning ei ole mõeldud reaalsete e-valimiste korraldamiseks. Kokkulangevused reaalse e-valimiste protsessiga on juhuslikud</div>
+		
 		<div id="Footer" class="footer">
-			Copyright Â© Guise
+			Copyright ÃÂ© Guise
 		</div>
-
+	</div>
 	</div>
 		
   </body>

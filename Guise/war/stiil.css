@@ -49,7 +49,7 @@ td.labels{
 	width:150px;
 	height:30px;
 }
-select.ListBoxSuurused{
+input.ListBoxSuurused{
 	width:150px;
 }
 
@@ -270,7 +270,7 @@ td.minukontoNupp{
 	margin:0 auto;
 }
 
-#PÃ¤is{
+#PĆ�Ā¤is{
 	width:700px;
 	height:100px;
 }
@@ -304,18 +304,31 @@ td.minukontoNupp{
 }
 
 #Nupp{
-	width:150px;
+	width:80px;
 	height:30px;
 	float:left;
 }
-
+#NuppV{
+	width:80px;
+	height:30px;
+	float:left;
+	display:none;
+}
+#valedandmed{
+	width:120px;
+	height:30px;
+	float:left;
+	color:red;
+	display:none;
+	margin-top: -15px;
+}
 #Facebook{
-	width:95px;
+	width:35px;
 	height:30;
 	float:left;
 }
 
-#TÃ¼hista{
+#TĆ�Ā¼hista{
 	width:60px;
 	background:#7CCCF1;
 	border-color:#7CCCF1;
@@ -327,7 +340,7 @@ td.minukontoNupp{
 }
 
 #VasakMenu{
-	height:600px;
+	height:300px;
 	width:150px;
 	float:left;
 }
@@ -338,5 +351,65 @@ td.minukontoNupp{
 }
 
 #TulemusedSorteering{
+	display:none;
+}
+
+table.isikVaade { 
+	border-collapse:separate;
+	border-spacing: 5px;
+	width: 540px; 
+	margin-left: auto;
+	margin-right: auto;
+}
+	
+table.isikVaade td{ 
+	border:1px solid #000000;
+	width: 200px;
+}
+	
+table.isikVaade th{ 
+	border:1px solid #000000;
+	background-color: #7CCCF1;
+	width:200px;
+}
+	
+#TagasiNupp{
+	width:150px;
+	height:30px;
+	float:right;
+}
+#PaisTeade{
+	height:20px;
+	width:700px;
+	float:left;
+	color:red;
+	text-align:center;
+	border: 1px solid red;
+}
+#JalusTeade{
+	height:40px;
+	width:698px;
+	float:left;
+	color:red;
+	text-align:center;
+	border: 1px solid red;
+}
+#TuhiRida{
+	height:2px;
+	width:700px;
+	float:left;
+}
+.VasakMenuList{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	
+}
+.joon{
+	color:#7CCCF1;
+	background:#7CCCF1;
+	height:2px;
+}
+#Logitud{
 	display:none;
 }
