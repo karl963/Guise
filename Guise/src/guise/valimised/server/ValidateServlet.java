@@ -1,6 +1,5 @@
 package guise.valimised.server;
 
-import com.google.appengine.api.rdbms.AppEngineDriver;
 import com.google.gson.Gson;
 
 import java.sql.*;
@@ -11,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.http.*;
 
 public class ValidateServlet extends HttpServlet {
@@ -121,54 +119,5 @@ public class ValidateServlet extends HttpServlet {
     
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     		   
-    		  PrintWriter out = resp.getWriter();
-    		  Connection c = null;
-    		  
-    		    try {
-    		    	
-    		      DriverManager.registerDriver(new AppEngineDriver());
-    		      c = DriverManager.getConnection("jdbc:google:rdbms://faceelection:fakeelection/guestbook");
-    		      
-    		      String nimi = req.getParameter("nimi");
-    		      String perenimi = req.getParameter("perenimi");
-    		      String partei = req.getParameter("partei");
-    		      String piirkond = req.getParameter("piirkond");
-    		      String id = req.getParameter("id");
-    		      String synniaeg = req.getParameter("synniaeg");
-    		      
-    		      if (id == "" || nimi == "") {
-    		        out.println("<html><head></head><body>You are missing either a message or a name! Try again! Redirecting in 3 seconds...</body></html>");
-    		      }
-    		      else {
-    		     
-    		    	  String statement ="INSERT INTO guisekandidaadid (id, eesnimi, perenimi, partei, piirkond, synniaeg) VALUES( ? , ? , ? , ? , ? , ?)";
-    		     
-	    		      PreparedStatement stmt = c.prepareStatement(statement);
-	    		      stmt.setString(1, id);
-	    		      stmt.setString(2, nimi);
-	    		      stmt.setString(3, perenimi);
-	    		      stmt.setString(4, partei);
-	    		      stmt.setString(5, piirkond);
-	    		      stmt.setString(6, synniaeg);
-	    		      
-	    		      int success = 2;
-	    		      success = stmt.executeUpdate();
-	    		      
-	    		      if(success == 1) {
-	    		        out.println("<html><head></head><body>Success! Redirecting in 3 seconds...</body></html>");
-	    		      } else if (success == 0) {
-	    		        out.println("<html><head></head><body>Failure! Please try again! Redirecting in 3 seconds...</body></html>");
-	    		      }
-    		      
-    		     }
-    		    } catch (SQLException e) {
-    		        e.printStackTrace();
-    		    } finally {
-    		        if (c != null) 
-    		          try {
-    		            c.close();
-    		            } catch (SQLException ignore) {
-    		         }
-    		      } resp.setHeader("Refresh","3; url=/guise.jsp");
-    		  }
+    }
 }

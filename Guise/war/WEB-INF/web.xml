@@ -18,13 +18,22 @@
         <url-pattern>/ValidateServlet/*</url-pattern>
     </servlet-mapping>
     
-       <servlet>
-        <servlet-name>HääletusServlet</servlet-name>
-        <servlet-class>guise.valimised.server.HääletusServlet</servlet-class>
+    <servlet>
+        <servlet-name>TulemusedServlet</servlet-name>
+        <servlet-class>guise.valimised.server.TulemusedServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HääletusServlet</servlet-name>
-        <url-pattern>/HääletusServlet/*</url-pattern>
+        <servlet-name>TulemusedServlet</servlet-name>
+        <url-pattern>/TulemusedServlet/*</url-pattern>
+    </servlet-mapping>
+    
+       <servlet>
+        <servlet-name>HaaletusServlet</servlet-name>
+        <servlet-class>guise.valimised.server.HaaletusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HaaletusServlet</servlet-name>
+        <url-pattern>/HaaletusServlet/*</url-pattern>
     </servlet-mapping>
     
   <!-- Servlets -->

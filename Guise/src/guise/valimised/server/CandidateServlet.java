@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.http.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,7 +24,7 @@ public class CandidateServlet extends HttpServlet {
 		if(parameetrid[0].split(" ").length==1){
 			nimed = new String[2];
 			nimed[0] = parameetrid[0].split(" ")[0];
-			nimed[1] = "N";
+			nimed[1] = "x";
 		}
 		else{
 			nimed = parameetrid[0].split(" ");
@@ -40,7 +39,7 @@ public class CandidateServlet extends HttpServlet {
 			String query = "SELECT * FROM guisekandidaadid ";
 			boolean esimene = true;
 			
-			if(!nimed[0].equals("N")){
+			if(!nimed[0].equals("x")){
 				if(esimene){
 					query += "WHERE eesnimi LIKE '" + nimed[0] + "%'";
 					esimene=false;
@@ -58,7 +57,7 @@ public class CandidateServlet extends HttpServlet {
 					query += "AND eesnimi LIKE '" + "" + "%'";
 				}
 			}
-			if(!nimed[1].equals("N")){
+			if(!nimed[1].equals("x")){
 				if(esimene){
 					query += "WHERE perenimi LIKE '" + nimed[1] + "%'";
 					esimene=false;
@@ -67,7 +66,7 @@ public class CandidateServlet extends HttpServlet {
 					query += "AND perenimi LIKE '" + nimed[1] + "%'";
 				}
 			}
-			if(!parameetrid[1].equals("N")){
+			if(!parameetrid[1].equals("x")){
 				if(esimene){
 					query += "WHERE id LIKE '" + parameetrid[1] + "%'";
 					esimene=false;
@@ -76,7 +75,7 @@ public class CandidateServlet extends HttpServlet {
 					query += "AND id LIKE '" + parameetrid[1] + "%'";
 				}
 			}
-			if(!parameetrid[2].equals("N")){
+			if(!parameetrid[2].equals("x")){
 				if(esimene){
 					query += "WHERE piirkond LIKE '" + parameetrid[2] + "%'";
 					esimene=false;
@@ -85,7 +84,7 @@ public class CandidateServlet extends HttpServlet {
 					query += "AND piirkond LIKE '" + parameetrid[2] + "%'";
 				}
 			}
-			if(!parameetrid[3].equals("N")){
+			if(!parameetrid[3].equals("x")){
 				if(esimene){
 					query += "WHERE partei LIKE '" + parameetrid[3] + "%'";
 					esimene=false;
@@ -155,11 +154,11 @@ public class CandidateServlet extends HttpServlet {
     		      String partei = req.getParameter("vanapartei");
     		      String piirkond = req.getParameter("vanapiirkond");
     		      
-    		      String uusnimi = req.getParameter("nimi");
+    		      String uusnimi = req.getParameter("eesnimi");
     		      String uusperenimi = req.getParameter("perenimi");
     		      String uuspiirkond = req.getParameter("piirkond");
     		      String uuspartei = req.getParameter("partei");
-
+    		      
     		      if (uusnimi == "" || uusperenimi=="" || uuspartei=="--Valige--" || uuspiirkond=="--Valige--") {
 
     		      }
@@ -187,7 +186,8 @@ public class CandidateServlet extends HttpServlet {
     		            c.close();
     		            } catch (SQLException ignore) {
     		         }
-    		        
+    		        resp.setContentType("text/plain");
+    	          	resp.setCharacterEncoding("UTF-8");
     		        resp.getWriter().write(vastus);
     		      }
 

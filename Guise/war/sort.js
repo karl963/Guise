@@ -13,7 +13,7 @@ function TSort_StoreDef () {
 	this.row_clones = [];
 	this.sort_state = [];
 	this.initialized = 0;
-//	this.last_sorted = -1;
+	this.last_sorted = -1;
 	this.history = [];
 	this.sort_keys = [];
 	this.sort_colors = [ '#FF0000', '#800080', '#0000FF' ];
@@ -30,17 +30,16 @@ function tsInit()
 {
 	if	(TSort_Data == null)
 	{
-		alert ('Error: sorting data is not provided!\n(TSort_Data is not defined)');
 		return;
 	}
 	if	(TSort_Data.push == null)
 		return;
+
 	var table = document.getElementById(TSort_Data[0]);
 	// Find thead
 	var thead = table.getElementsByTagName('thead')[0];
 	if	(thead == null)
 	{
-		alert ('Cannot find THEAD tag!');
 		return;
 	}
 	var cols = thead.getElementsByTagName('th');
@@ -118,6 +117,7 @@ function tsInit()
 			tsDraw(TSort_Initial[i]);
 		}
 	}
+	
 }
 
 function tsDraw(p_id)

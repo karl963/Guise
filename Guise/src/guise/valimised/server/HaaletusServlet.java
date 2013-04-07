@@ -8,14 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.http.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
-import com.google.gson.Gson;
-
-public class H‰‰letusServlet extends HttpServlet {
+public class HaaletusServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -86,9 +81,17 @@ public class H‰‰letusServlet extends HttpServlet {
     		      DriverManager.registerDriver(new AppEngineDriver());
     		      c = DriverManager.getConnection("jdbc:google:rdbms://faceelection:fakeelection/guestbook");
     		      
-    		      int id = Integer.valueOf(req.getParameter("id"));
-    		      int andjaid = Integer.valueOf(req.getParameter("andjaid"));
-
+    		      int id,andjaid;
+    		      try{
+    		    	  id = Integer.valueOf(req.getParameter("id"));
+    		      }catch(Exception e){
+    		    	  id=99999;
+    		      }
+    		      try{
+    		    	  andjaid = Integer.valueOf(req.getParameter("andjaid"));
+    		      }catch(Exception e){
+    		    	  andjaid=99999;
+    		      }
 		    	  String statement ="UPDATE guisekandidaadid SET haali=haali+1 WHERE id="+id;
     		      PreparedStatement stmt = c.prepareStatement(statement);
     		      
@@ -125,6 +128,8 @@ public class H‰‰letusServlet extends HttpServlet {
     		            c.close();
     		            } catch (SQLException ignore) {
     		         }
+    		        resp.setContentType("text/plain");
+    	            resp.setCharacterEncoding("UTF-8");
     		        resp.getWriter().write(vastus);
     		      } 
     		  }
