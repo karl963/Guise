@@ -18,6 +18,15 @@
         <url-pattern>/ValidateServlet/*</url-pattern>
     </servlet-mapping>
     
+       <servlet>
+        <servlet-name>FacebookServlet</servlet-name>
+        <servlet-class>guise.valimised.server.FacebookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FacebookServlet</servlet-name>
+        <url-pattern>/FacebookServlet/*</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>TulemusedServlet</servlet-name>
         <servlet-class>guise.valimised.server.TulemusedServlet</servlet-class>
@@ -36,16 +45,14 @@
         <url-pattern>/HaaletusServlet/*</url-pattern>
     </servlet-mapping>
     
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>guise.valimised.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/guise/greet</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>ChannelServlet</servlet-name>
+        <servlet-class>guise.valimised.server.ChannelServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChannelServlet</servlet-name>
+        <url-pattern>/ChannelServlet/*</url-pattern>
+    </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>

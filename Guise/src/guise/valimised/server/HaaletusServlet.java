@@ -1,5 +1,8 @@
 package guise.valimised.server;
 
+import com.google.appengine.api.channel.ChannelMessage;
+import com.google.appengine.api.channel.ChannelService;
+import com.google.appengine.api.channel.ChannelServiceFactory;
 import com.google.appengine.api.rdbms.AppEngineDriver;
 
 import java.sql.*;
@@ -27,7 +30,7 @@ public class HaaletusServlet extends HttpServlet {
 
 			ResultSet rs = c.createStatement().executeQuery(query);
 
-			if(rs.next()){ // kui meil on kandidaat leitud kellele h‰‰le andnud oleme
+			if(rs.next()){ // kui meil on kandidaat leitud kellele haale andnud oleme
 				
 				int success = 2,success2 = 2;
 				
@@ -54,7 +57,10 @@ public class HaaletusServlet extends HttpServlet {
 				}
 				
 			}
-
+		      try{
+		     ChannelService channelService = ChannelServiceFactory.getChannelService();
+		     channelService.sendMessage(new ChannelMessage("key", vastus));
+		      }catch(Exception xx){}
 		} catch (Exception e) {
 			e.printStackTrace();
 	    } finally {
@@ -118,7 +124,10 @@ public class HaaletusServlet extends HttpServlet {
 
     		    	  }
     		      }
-    		      
+    		      try{
+    		     ChannelService channelService = ChannelServiceFactory.getChannelService();
+    		     channelService.sendMessage(new ChannelMessage("key",vastus));
+    		      }catch(Exception xx){}
     		      
     		    } catch (SQLException e) {
     		        e.printStackTrace();

@@ -1,12 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.lang.String.*" %>
-<%@ page import="com.google.appengine.api.rdbms.AppEngineDriver" %>
+
 
 <!doctype html>
+ 
+<html manifest="cache.manifest" lang="et">
 
-<html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	
@@ -14,14 +11,40 @@
 
     <title>Guise Election</title>
     
-	<script src="jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.4.2.js" type="text/javascript"></script>
-	<script type="text/javascript" src="sort.js"></script>
+    
+	<script src="jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="jquery-1.4.2.js" type="text/javascript"></script>
 	<script type="text/javascript" src="scriptid.js"></script>
-
+	<script type="text/javascript" src="sort.js"></script>
+	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+	
   </head>
 
   <body>
+    <script type="text/javascript">
+
+    var fbURL = "http://www.facebook.com/dialog/oauth?client_id=104787739720061&redirect_uri=" + encodeURIComponent("http://guisevalimismasin.appspot.com/FacebookServlet") + "&scope=email,user_birthday";
+
+    onClose = function(){
+    	connected=false;
+    };
+    onOpened = function(){
+    	connected = true;
+    };
+    onError = function(err){};
+    onMessage = function(m){
+    	tegutse(m);
+    };
+    	var token = '{{ token }}';
+        channel = new goog.appengine.Channel(token);
+        socket = channel.open();
+        socket.onopen = onOpened;
+        socket.onmessage = onMessage;
+        socket.onerror = onError;
+        socket.onclose = onClose;
+
+    </script>
+    
     <!-- OPTIONAL: include this if you want history support -->
     <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
     
@@ -39,11 +62,11 @@
 	
 	<div id="Kogu">
 	
-		<div id="PÃÂ¤is" class="VasakMenuList">
+		<div id="PÃ¤is" class="VasakMenuList">
 			<a id="Pealeht"><img src="pildid/logo.png" alt="Logo" id="Logo"></a>
 		</div>
 		
-		<div id="PaisTeade">Antud rakendus ei ole mõeldud kasutamiseks reaalsetel valimistel</div>
+		<div id="PaisTeade">Antud rakendus ei ole m&otilde;eldud kasutamiseks reaalsetel valimistel</div>
 		
 		<div id="TuhiRida"> </div>
 		
@@ -55,9 +78,9 @@
 				<div id="Parool"><input id="PAROOL" value="Parool" type="password" name="password" class="logimisLahter" onFocus="this.className = 'logimisLahter onFocus'" onBlur="this.className = 'logimisLahter onBlur'"></div>
 				<div id="Nupp"><input type="submit" value="Logi sisse" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
 				<div id="loginLoading"><img src='pildid/loader.gif'></div>
-				<div id="NuppV"><input type="submit" value="Logi välja" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
+				<div id="NuppV"><input type="submit" value="Logi v&auml;lja" class="loginNupp" onMouseOver="this.className = 'loginNupp mouseOver'" onMouseOut="this.className = 'loginNupp mouseOut'"  onFocus="this.className = 'loginNupp onFocus'" onBlur="this.className = 'loginNupp onBlur'"></div>
 				<div id="valedandmed">Valed andmed!</div>
-				<div id="Facebook"><img src="pildid/facebook.png" alt="fb"></div>
+				<div id="Facebook"><a onClick="location.href='http://www.facebook.com/dialog/oauth?client_id=104787739720061&redirect_uri=' + encodeURIComponent('http://guisevalimismasin.appspot.com/FacebookServlet') + '&scope=email,user_birthday'"><img src="pildid/facebook.png" alt="fb"></a></div>
 			</form>
 			
 		</div>
@@ -65,7 +88,7 @@
 		<div class="tabs">
 		<div id="VasakMenu" class="VasakMenuList" >
 		
-			<!--<li class="tab"><a href="#sisuHääleta"><input type="image" id="HÃ¤Ã¤leta" class="leftMenuButton" src="pildid/Haaleta.png" /></a></li>-->
+			<!--<li class="tab"><a href="#sisuHaaleta"><input type="image" id="Hääleta" class="leftMenuButton" src="pildid/Haaleta.png" /></a></li>-->
 			<a class="tab" href="#sisuOtsiKandidaati"><input type="image" id="OtsiKandidaati" class="leftMenuButton" src="pildid/OtsiKandidaati.png" /></a>
 			<a class="tab" href="#sisuTulemused"><input type="image" id="Tulemused" class="leftMenuButton" src="pildid/Tulemused.png" /></a>
 			<a class="tab" href="#sisuMinuKonto"><input type="image" id="MinuKonto" class="leftMenuButton" src="pildid/MinuKonto.png" /></a>
@@ -76,11 +99,11 @@
 
 			<h1>Tere tulemast Guise Valimismasinasse!</h1>
 			<br><br>
-			Kindla kandidaadi leidmiseks ja Hääletamiseks valige "Otsi kandidaati"
+			Kindla kandidaadi leidmiseks ja H&auml;&auml;letamiseks valige "Otsi kandidaati"
 			<br><br>
 			Tulemuste statistika vaatamiseks valige "Tulemused"
 			<br><br>
-			Kandideerimiseks ja enda h&#228;&#228;le tühistamiseks valige "Minu konto"
+			Kandideerimiseks ja enda h&#228;&#228;le t&uuml;histamiseks valige "Minu konto"
 			</p>
 			
 		</div>
@@ -92,7 +115,7 @@
 			<h1>Minu Konto</h1>
 			
 			<p>
-			All saate oma andmeid muuta ja kandideerida. Samuti saate enda tehtud häälevalikut tühistada.
+			All saate oma andmeid muuta ja kandideerida. Samuti saate enda tehtud h&auml;&auml;levalikut t&uuml;histada.
 			</p>
 			<form Name="Valideerimine" >
 			<table class="minukontoLabel">
@@ -108,7 +131,7 @@
 
 					<td class="minukontoTd"><input type="text" name="perenimi" id="KPERENIMI" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoTd"><input type="text" name="sünniaeg" id="KSÜNNIAEG" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoTd"><input type="text" name="synniaeg" id="KSYNNIAEG" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 				
 				
 					<td >
@@ -141,7 +164,7 @@
 					<td class="minukontoNupp"> </td>
 					<td class="minukontoNupp"> </td>
 					<td class="minukontoNupp"> </td>
-					<td class="minukontoNupp"> <input type="button" onClick="Kandideeri(this.form)" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this..className = 'kandideeriOut'"/></td>
+					<td class="minukontoNupp"> <input type="button" onClick="Kandideeri(this.form)" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'"/></td>
 				</tr>
 			</table>
 			<p id="Hojatus"> </p>
@@ -204,11 +227,11 @@
 					<td class="minukontoNupp"><input id="NIMI" type="text" name="Eesnimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 					<td class="minukontoNupp"><input id="PARTEI" type="text" name="Perekonnanimi" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoNupp"><input id="PIIRKOND" type="text" name="SÃÂ¼nniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
+					<td class="minukontoNupp"><input id="PIIRKOND" type="text" name="SÃ¼nniaeg" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
 					<td class="minukontoNupp"><input id="ID" type="text" name="Partei" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td>
 
-					<td class="minukontoNupp"><button type="submit" value="Otsi" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">Otsi</button></td>
+					<td class="minukontoNupp"><button type="button" onClick="uuendaOtsi();" value="Otsi" class="suurNupp" onMouseOver="this.className= 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'">Otsi</button></td>
 				</tr>
 			</table>
 			</form>
@@ -266,17 +289,17 @@
 	<div id="sisuTulemused" class="content sisu">
 	
 			<h1>Teie valik</h1>
-			<p>All saate valida mille järgi tulemusi sorteerida ning neid seejärel vaadata.</p>
+			<p>All saate valida mille j&auml;rgi tulemusi sorteerida ning neid seej&auml;rel vaadata.</p>
 				
 				<div class="sorteeri">
 				
-					<input type="button" onClick="annaTulemused('piirkond');" value="Piirkond" id="TulemusPiirkond" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+					<input type="button" value="Piirkond" id="TulemusPiirkond" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
 
-					<input type="button" onClick="annaTulemused('partei');" value="Partei" id="TulemusPartei" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+					<input type="button" value="Partei" id="TulemusPartei" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
 
-					<input type="button" onClick="annaTulemused('kandidaadid');" value="Kandidaadid" id="TulemusKandidaadid" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+					<input type="button" value="Kandidaadid" id="TulemusKandidaadid" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
 
-					<input type="button" onClick="annaTulemused('riik');" value="Kogu riik" id="TulemusRiik" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
+					<input type="button" value="Kogu riik" id="TulemusRiik" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" />
 
 					<input type="button" value="Prindi" id="TulemusPrindi" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'" 
 onclick="prindi()"/>
@@ -295,10 +318,10 @@ onclick="prindi()"/>
 			</div>
 	</div>
 		
-	<div id="JalusTeade">Rakenduses realiseeritud e-valimiste näide on realiseeritud tehnoloogiate praktiseerimise eesmärgil ning ei ole mõeldud reaalsete e-valimiste korraldamiseks. Kokkulangevused reaalse e-valimiste protsessiga on juhuslikud</div>
+	<div id="JalusTeade">Rakenduses realiseeritud e-valimiste n&auml;ide on realiseeritud tehnoloogiate praktiseerimise eesm&auml;rgil ning ei ole m&otilde;eldud reaalsete e-valimiste korraldamiseks. Kokkulangevused reaalse e-valimiste protsessiga on juhuslikud</div>
 		
 		<div id="Footer" class="footer">
-			Copyright ÃÂ© Guise
+			Copyright Â© Guise
 		</div>
 	
 	</div>

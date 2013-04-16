@@ -1,5 +1,8 @@
 package guise.valimised.server;
 
+import com.google.appengine.api.channel.ChannelMessage;
+import com.google.appengine.api.channel.ChannelService;
+import com.google.appengine.api.channel.ChannelServiceFactory;
 import com.google.gson.Gson;
 
 import java.sql.*;
@@ -12,10 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import javax.servlet.http.*;
 
+
 public class TulemusedServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		String sorteering = req.getParameter("sorteering");
 
 		Connection c = null;
@@ -24,7 +28,6 @@ public class TulemusedServlet extends HttpServlet {
 		try {
 			
 			c = DriverManager.getConnection("jdbc:google:rdbms://faceelection:fakeelection/guestbook");
-			
 			
 			String query="";
 			ResultSet rs;
@@ -155,7 +158,4 @@ public class TulemusedServlet extends HttpServlet {
 	    }  
   }
     
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    		   
-    }
 }

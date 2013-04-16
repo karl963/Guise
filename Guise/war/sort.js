@@ -28,10 +28,14 @@ function tsInitOnload ()
 
 function tsInit()
 {
+
 	if	(TSort_Data == null)
 	{
 		return;
 	}
+	
+	TSort_Store = new TSort_StoreDef();
+	
 	if	(TSort_Data.push == null)
 		return;
 
@@ -117,7 +121,7 @@ function tsInit()
 			tsDraw(TSort_Initial[i]);
 		}
 	}
-	
+
 }
 
 function tsDraw(p_id)

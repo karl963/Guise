@@ -1,0 +1,20 @@
+CACHE MANIFEST
+NETWORK:
+/TulemusedServlet
+/CandidateServlet
+/HaaletusServlet
+/ValidateServlet
+/FacebookServlet
+CACHE:
+/stiil.css
+/jquery-1.9.1.min.js
+/jquery-1.4.2.js
+/scriptid.js
+/sort.js
+/pildid/facebook.png
+/pildid/loader.gif
+/pildid/logo.png
+/pildid/MinuKonto.png
+/pildid/OtsiKandidaati.png
+/pildid/Tulemused.png
+/Guise.jsp

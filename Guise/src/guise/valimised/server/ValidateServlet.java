@@ -51,31 +51,31 @@ public class ValidateServlet extends HttpServlet {
 			    String partei = rs.getString("partei");
 			    String piirkond = rs.getString("piirkond");
 			    String id = String.valueOf(rs.getInt("id"));
-			    String sünniaeg = rs.getString("synniaeg");
-			    String hääl = String.valueOf(rs.getString("antudhaal"));
+			    String sunniaeg = rs.getString("synniaeg");
+			    String haal = String.valueOf(rs.getString("antudhaal"));
 			    
 	            json2.put("eesnimi", eesnimi);
 	            json2.put("perenimi", perenimi);
 	            json2.put("id", id);
-	            json2.put("sünniaeg", sünniaeg);
+	            json2.put("synniaeg", sunniaeg);
 	            json2.put("piirkond", piirkond);
 	            json2.put("partei", partei);
-				json2.put("hääl", hääl);
+				json2.put("haal", haal);
 				
 				String query2 = "SELECT partei, piirkond, eesnimi, perenimi FROM guisekandidaadid WHERE id="+ rs.getInt("antudhaal");
 				ResultSet rs2 = c.createStatement().executeQuery(query2);
 				String kandidaatnimi = " ",kandidaatpiirkond = " ",kandidaatpartei = " ";
 				
-				if(rs2.next()){ // kui ta on hääl andnud
+				if(rs2.next()){ // kui ta on haal andnud
 					
-					json.put("hääletanud","true");
+					json.put("haaletanud","true");
 					kandidaatnimi = rs2.getString("eesnimi")+" "+rs2.getString("perenimi");
 					kandidaatpiirkond = rs2.getString("piirkond");
 					kandidaatpartei = rs2.getString("partei");
 					
 				}
 				else{
-					json.put("hääletanud","false");
+					json.put("haaletanud","false");
 				}
 				
 	            json2.put("kandidaatpiirkond", kandidaatpiirkond);

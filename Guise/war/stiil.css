@@ -147,6 +147,30 @@ td.minukontoNupp{
 	background:#7CCCF1;
 	border-color:#7CCCF1;
 }
+.valitudTulemus{
+	width:100px;
+	background:#FFFFFF;
+	border-color:#7CCCF1;
+}
+.valitudOut{
+	color:#000000;
+	width:100px;
+	background:#FFFFFF;
+	border-color:#7CCCF1;
+}
+
+.valitudFocus{
+	color:#404040;
+	width:100px;
+	background:#FFFFFF;
+	border-color:#7CCCF1;
+}
+.valitudOver{
+	color:#000000;
+	width:100px;
+	background:#FFFFFF;
+	border-color:#7CCCF1;
+}
 
 .kandideeriOver{
 	color:#FFFFFF;

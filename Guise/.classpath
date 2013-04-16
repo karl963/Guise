@@ -9,5 +9,6 @@
 	<classpathentry exported="true" kind="lib" path="war/WEB-INF/lib/gson-2.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="war/WEB-INF/lib/json-simple-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="war/WEB-INF/lib/impl/mysql-connector-java-5.1.24-bin.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/java_websocket.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

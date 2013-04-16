@@ -1,5 +1,8 @@
 package guise.valimised.server;
 
+import com.google.appengine.api.channel.ChannelMessage;
+import com.google.appengine.api.channel.ChannelService;
+import com.google.appengine.api.channel.ChannelServiceFactory;
 import com.google.appengine.api.rdbms.AppEngineDriver;
 
 import java.sql.*;
@@ -98,7 +101,8 @@ public class CandidateServlet extends HttpServlet {
 
 			while (rs.next()){
 
-			    String nimi = rs.getString("eesnimi") + " " + rs.getString("perenimi");
+			    String nimi = rs.getString("eesnimi");
+			    String perenimi = rs.getString("perenimi");
 			    String partei = rs.getString("partei");
 			    String piirkond = rs.getString("piirkond");
 			    String id = String.valueOf(rs.getInt("id"));
@@ -106,6 +110,7 @@ public class CandidateServlet extends HttpServlet {
 			    Map<String, String> json = new LinkedHashMap<String, String>();
 			    
 	            json.put("nimi", nimi);
+	            json.put("perenimi", perenimi);
 	            json.put("id", id);
 	            json.put("piirkond", piirkond);
 	            json.put("partei", partei);
@@ -178,6 +183,14 @@ public class CandidateServlet extends HttpServlet {
 	    		      }
     		      
     		     }
+    		      
+    		      try{
+    		    	  
+    		     ChannelService channelService = ChannelServiceFactory.getChannelService();
+    		     channelService.sendMessage(new ChannelMessage("key", vastus));
+    		     
+    		      }catch(Exception xx){}
+    		      
     		    } catch (SQLException e) {
     		        e.printStackTrace();
     		    } finally {
