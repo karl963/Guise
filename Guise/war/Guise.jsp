@@ -2,8 +2,8 @@
 
 <!doctype html>
  
-<html manifest="cache.manifest" lang="et">
-
+<!--<html manifest="cache.manifest" lang="et">-->
+<html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	
@@ -16,7 +16,7 @@
 	<script src="jquery-1.4.2.js" type="text/javascript"></script>
 	<script type="text/javascript" src="scriptid.js"></script>
 	<script type="text/javascript" src="sort.js"></script>
-	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+	<!--<script type="text/javascript" src="/_ah/channel/jsapi"></script>-->
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDK_tezi2AsphJ8ZLNlkmw5morPt54degs&sensor=false"></script>
 	<script type="text/javascript" src="googlemap.js"></script>
 	
@@ -40,7 +40,7 @@
     window.onload = function(){
     	if(window.navigator.onLine){
 	    	var token = '{{ token }}';
-	        channel = new goog.appengine.Channel(token);
+	        channel = new google.appengine.Channel(token);
 	        socket = channel.open();
 	        socket.onopen = onOpened;
 	        socket.onmessage = onMessage;
