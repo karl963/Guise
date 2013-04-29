@@ -274,6 +274,10 @@ td.minukontoNupp{
 	display: none;
 	width:550px;
 }
+#mapLoading{
+	text-align: center;
+	width:550px;
+}
 #loadingTulemus{
 	text-align: center;
 	display: none;
@@ -463,4 +467,9 @@ table.isikVaade th{
 }
 #TulemusedTabel{
 	width:550px;
+}
+#googleMap{
+	width:530px;
+	height:380px;
+	display:none;
 }

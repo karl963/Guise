@@ -36,6 +36,16 @@
         <url-pattern>/TulemusedServlet/*</url-pattern>
     </servlet-mapping>
     
+    
+    <servlet>
+        <servlet-name>Tulemused2Servlet</servlet-name>
+        <servlet-class>guise.valimised.server.Tulemused2Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Tulemused2Servlet</servlet-name>
+        <url-pattern>/Tulemused2Servlet/*</url-pattern>
+    </servlet-mapping>
+    
        <servlet>
         <servlet-name>HaaletusServlet</servlet-name>
         <servlet-class>guise.valimised.server.HaaletusServlet</servlet-class>

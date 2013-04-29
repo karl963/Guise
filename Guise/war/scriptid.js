@@ -954,6 +954,50 @@ function Annahaal(mitmes){
 	}
 }
 
+function juhtPiirkond(koht,mark,tegu){
+	var vastus ="";
+	$.ajax({
+	    type: "GET",
+	    url: "/Tulemused2Servlet",
+	    data: "&piirkond="+koht,
+	    success:function(data){
+	    	if(tegu=="varv"){
+	    		if(data.split(" ")[0]=="Meeskond"){
+	    			iconFile = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+	    			mark.setIcon(iconFile);
+	    		}
+	    		else if(data.split(" ")[0]=="Partei"){
+	    			iconFile = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+	    			mark.setIcon(iconFile);
+	    		}
+	    		else if(data.split(" ")[0]=="Selts"){
+	    			iconFile = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+	    			mark.setIcon(iconFile);
+	    		}
+	    		else if(data.split(" ")[0]=="Yhing"){
+	    			iconFile = 'http://maps.google.com/mapfiles/ms/icons/Blue-dot.png';
+	    			mark.setIcon(iconFile);
+	    		}
+	    		else{
+	    			iconFile = 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';
+	    			mark.setIcon(iconFile);
+	    		}
+	    	}
+	    	else{
+	    		new google.maps.InfoWindow({content:"Piirkonnas "+koht+" juhib erakond "+data}).open(map, mark);
+	    	}
+	    	
+	    	if(koht=="Hiiumaa"){
+	    	 	document.getElementById("googleMap").style.display="block";
+	    	 	document.getElementById("mapLoading").style.display="none";
+	    	}
+	    	
+	    }
+	});
+}
+
+
+
 function supports_html5_storage() {
 	 try {
 	    return 'localStorage' in window && window['localStorage'] !== null;
@@ -961,3 +1005,13 @@ function supports_html5_storage() {
 	    return false;
 	 }
 }
+
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '104787739720061', // App ID
+      channelUrl : 'http://guisevalimismasin.appspot.com/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+};

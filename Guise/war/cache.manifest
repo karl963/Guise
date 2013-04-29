@@ -1,6 +1,7 @@
 CACHE MANIFEST
 NETWORK:
 /TulemusedServlet
+/Tulemused2Servlet
 /CandidateServlet
 /HaaletusServlet
 /ValidateServlet
@@ -10,6 +11,7 @@ CACHE:
 /jquery-1.9.1.min.js
 /jquery-1.4.2.js
 /scriptid.js
+/googlemap.js
 /sort.js
 /pildid/facebook.png
 /pildid/loader.gif

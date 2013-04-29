@@ -17,6 +17,8 @@
 	<script type="text/javascript" src="scriptid.js"></script>
 	<script type="text/javascript" src="sort.js"></script>
 	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDK_tezi2AsphJ8ZLNlkmw5morPt54degs&sensor=false"></script>
+	<script type="text/javascript" src="googlemap.js"></script>
 	
   </head>
 
@@ -24,7 +26,7 @@
     <script type="text/javascript">
 
     var fbURL = "http://www.facebook.com/dialog/oauth?client_id=104787739720061&redirect_uri=" + encodeURIComponent("http://guisevalimismasin.appspot.com/FacebookServlet") + "&scope=email,user_birthday";
-
+	
     onClose = function(){
     	connected=false;
     };
@@ -35,14 +37,24 @@
     onMessage = function(m){
     	tegutse(m);
     };
-    	var token = '{{ token }}';
-        channel = new goog.appengine.Channel(token);
-        socket = channel.open();
-        socket.onopen = onOpened;
-        socket.onmessage = onMessage;
-        socket.onerror = onError;
-        socket.onclose = onClose;
-
+    window.onload = function(){
+    	if(window.navigator.onLine){
+	    	var token = '{{ token }}';
+	        channel = new goog.appengine.Channel(token);
+	        socket = channel.open();
+	        socket.onopen = onOpened;
+	        socket.onmessage = onMessage;
+	        socket.onerror = onError;
+	        socket.onclose = onClose;
+    	}
+    };
+    
+    window.onload = function(){
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDK_tezi2AsphJ8ZLNlkmw5morPt54degs&sensor=false&callback=initialize";
+      document.body.appendChild(script);
+    }
     </script>
     
     <!-- OPTIONAL: include this if you want history support -->
@@ -152,6 +164,17 @@
 						<option value="Harjumaa">Harjumaa</option>
 						<option value="Saaremaa">Saaremaa</option>
 						<option value="Tartumaa">Tartumaa</option>
+						<option value="Põlvamaa">Valgamaa</option>
+						<option value="Võrumaa">Harjumaa</option>
+						<option value="Ida-Virumaa">Saaremaa</option>
+						<option value="Lääne-Virumaa">Tartumaa</option>
+						<option value="Jõgevamaa">Valgamaa</option>
+						<option value="Järvamaa">Harjumaa</option>
+						<option value="Pärnumaa">Saaremaa</option>
+						<option value="Raplamaa">Tartumaa</option>
+						<option value="Läänemaa">Harjumaa</option>
+						<option value="Hiiumaa">Saaremaa</option>
+						<option value="Viljandimaa">Harjumaa</option>
 					</select>
 					</td>
 					<!-- <td class="minukontoTd"><input value="Piirkond" type="text" name="Piirkond" class="otsinguLahter" onFocus="this.className= 'otsinguLahterOnFocus'" onBlur="this.className= 'otsinguLahterOnBlur'"></td> -->
@@ -164,7 +187,7 @@
 					<td class="minukontoNupp"> </td>
 					<td class="minukontoNupp"> </td>
 					<td class="minukontoNupp"> </td>
-					<td class="minukontoNupp"> <input type="button" onClick="Kandideeri(this.form)" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'"/></td>
+					<td class="minukontoNupp"> <input id="kandideeriNupp" type="button" onClick="Kandideeri(this.form)" value="Kandideeri" class="suurNupp" onMouseOver="this.className = 'kandideeriOver'" onMouseOut="this.className = 'kandideeriOut'" onFocus="this.className = 'kandideeriFocus'" onBlur="this.className = 'kandideeriOut'"/></td>
 				</tr>
 			</table>
 			<p id="Hojatus"> </p>
@@ -316,6 +339,13 @@ onclick="prindi()"/>
 				<div id="Triik"></div>
 				<div id="Tpart"></div>
 			</div>
+			
+				<br>
+				<hr class="joon">
+				<div id="mapLoading"><img src='pildid/loader.gif'></div>
+				<br>
+				<div id="googleMap"></div>
+			
 	</div>
 		
 	<div id="JalusTeade">Rakenduses realiseeritud e-valimiste n&auml;ide on realiseeritud tehnoloogiate praktiseerimise eesm&auml;rgil ning ei ole m&otilde;eldud reaalsete e-valimiste korraldamiseks. Kokkulangevused reaalse e-valimiste protsessiga on juhuslikud</div>
